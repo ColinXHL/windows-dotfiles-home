@@ -1,0 +1,25 @@
+# Secrets and machine-local overrides
+.env
+.env.*
+!.env.example
+*.secret
+credentials.*
+secrets.*
+
+# Logs, caches, and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Application state that may contain private connection data
+**/confCons.xml
+**/mRemoteNG.settings
+*.rdp
+flow-launcher/Cache/
+flow-launcher/History/
+flow-launcher/Logs/

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "sheep-astral-teal",
+  "name": "Astral Teal",
+  "brandSubtitle": "ASTRAL TEAL",
+  "tagline": "Quiet orbit. Clear focus.",
+  "projectPrefix": "Project · ",
+  "projectLabel": "◉  Select project",
+  "statusText": "FOCUS",
+  "quote": "QUIET ORBIT",
+  "image": "background.png",
+  "appearance": "dark",
+  "art": {
+    "focusX": 0.57,
+    "focusY": 0.48,
+    "safeArea": "left",
+    "taskMode": "ambient"
+  },
+  "colors": {
+    "background": "#050d12",
+    "panel": "#0c171b",
+    "panelAlt": "#122329",
+    "accent": "#00868d",
+    "accentAlt": "#2ea5ad",
+    "secondary": "#6fb8bd",
+    "highlight": "#9bcfd2",
+    "text": "#e1edef",
+    "muted": "#87969a",
+    "line": "rgba(46, 165, 173, 0.18)"
+  }
+}

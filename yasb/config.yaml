@@ -1,0 +1,483 @@
+watch_stylesheet: true
+watch_config: true
+debug: false
+tooltip:
+  offset: 6
+  blur_effect:
+    enabled: true
+    dark_mode: true
+    round_corners: true
+    round_corners_type: "normal"
+    border_color: "None"
+komorebi:
+  start_command: "komorebic start"
+  stop_command: "komorebic stop"
+  reload_command: "komorebic stop && komorebic start"
+bars:
+  status-bar:
+    enabled: true
+    screens: ['*']
+    class_name: "yasb-bar"
+    alignment:
+      position: "top"
+    animation:
+      enabled: true
+      duration: 800
+    blur_effect:
+      enabled: true
+      dark_mode: true
+      round_corners: true
+      round_corners_type: "small"
+      border_color: "None"
+    window_flags:
+      always_on_top: false
+      windows_app_bar: true
+    dimensions:
+      width: "100%"
+      height: 40
+    padding:
+      top: 9
+      left: 9
+      # Do not reserve a second invisible gap below the visible bar. GlazeWM's
+      # 12px outer gap now matches the bottom and side gaps.
+      bottom: 0
+      right: 9
+    widgets:
+      left:
+        [
+          "home",
+          "update_check",
+          "cpu",
+          "memory",
+          "cava",
+          "traffic",
+        ]
+      center:
+        [
+          "glazewm_workspaces",
+          "active_window",
+        ]
+      right:
+        [
+          "notifications",
+          "clock",
+          "media",
+          "systray",
+          "volume",
+          "control_center",
+          "wifi",
+          "disk",
+          "power_menu"
+        ]
+widgets:
+  glazewm_workspaces:
+    type: "glazewm.workspaces.GlazewmWorkspacesWidget"
+    options:
+      offline_label: "GlazeWM Offline"
+      hide_if_offline: false
+  home:
+    type: "yasb.home.HomeWidget"
+    options:
+      label: "<span>\udb80\udf5c</span>"
+      menu_list:
+        - { title: "Home", path: "~" }
+        - { title: "Downloads", path: "C:\\Users\\sheep\\Downloads"}
+        - { title: "Documents", path: "C:\\Users\\sheep\\Documents"}
+        - { title: "Pictures", path: "C:\\Users\\sheep\\Pictures"}
+        - { title: "Videos", path: "C:\\Users\\sheep\\Videos"}
+      system_menu: true
+      power_menu: false
+      blur: true
+      round_corners: true
+      round_corners_type: "normal"
+      border_color: ""
+  clock:
+    type: "yasb.clock.ClockWidget"
+    options:
+      label: "<span>\ue769</span>{%H:%M}"
+      label_alt: "{%a, %d %b %H:%M:%S}"
+      tooltip: true
+      timezones: [] #Looking up time zone info from registry
+  amap_weather:
+    type: "yasb.custom.CustomWidget"
+    options:
+      label: "{data[bar]}"
+      label_alt: "{data[city]} {data[weather]} {data[temp]}°C  湿度 {data[humidity]}%"
+      label_placeholder: "天气..."
+      class_name: "amap-weather-widget"
+      tooltip: true
+      tooltip_label: >-
+        <table cellspacing="7" cellpadding="9"><tr><td colspan="4"><table width="100%" cellspacing="0" cellpadding="0"><tr><td><span style="font-size:34px;color:{data[color]}">{data[icon]}</span>　<span style="font-size:21px;font-weight:700;color:#d9ecec">{data[city]}　{data[weather]}</span></td><td align="right"><span style="font-size:30px;font-weight:700;color:{data[color]}">{data[temp]}°C</span></td></tr></table><br><span style="font-size:12px;font-weight:500;color:#81999b">󰖎 湿度 {data[humidity]}%　　󰖝 风向风速 {data[wind]}　　󰥔 {data[report]}</span></td></tr><tr><td width="112" align="center" bgcolor="#132629"><span style="font-size:12px;color:#a9c2c3">今天　{data[day0Date]}</span><br><span style="font-size:30px;color:{data[day0Color]}">{data[day0Icon]}</span><br><span style="font-size:13px;color:#d9ecec">{data[day0Weather]}</span><br><span style="font-weight:700;color:#e5b567">{data[day0High]}°</span><span style="color:#60787a"> / </span><span style="font-weight:700;color:#40a4aa">{data[day0Low]}°</span></td><td width="112" align="center" bgcolor="#132629"><span style="font-size:12px;color:#a9c2c3">明天　{data[day1Date]}</span><br><span style="font-size:30px;color:{data[day1Color]}">{data[day1Icon]}</span><br><span style="font-size:13px;color:#d9ecec">{data[day1Weather]}</span><br><span style="font-weight:700;color:#e5b567">{data[day1High]}°</span><span style="color:#60787a"> / </span><span style="font-weight:700;color:#40a4aa">{data[day1Low]}°</span></td><td width="112" align="center" bgcolor="#132629"><span style="font-size:12px;color:#a9c2c3">后天　{data[day2Date]}</span><br><span style="font-size:30px;color:{data[day2Color]}">{data[day2Icon]}</span><br><span style="font-size:13px;color:#d9ecec">{data[day2Weather]}</span><br><span style="font-weight:700;color:#e5b567">{data[day2High]}°</span><span style="color:#60787a"> / </span><span style="font-weight:700;color:#40a4aa">{data[day2Low]}°</span></td><td width="112" align="center" bgcolor="#132629"><span style="font-size:12px;color:#a9c2c3">第四天　{data[day3Date]}</span><br><span style="font-size:30px;color:{data[day3Color]}">{data[day3Icon]}</span><br><span style="font-size:13px;color:#d9ecec">{data[day3Weather]}</span><br><span style="font-weight:700;color:#e5b567">{data[day3High]}°</span><span style="color:#60787a"> / </span><span style="font-weight:700;color:#40a4aa">{data[day3Low]}°</span></td></tr></table>
+      exec_options:
+        run_cmd: "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\sheep\\.config\\yasb\\amap-weather.ps1"
+        run_interval: 3600000
+        return_format: "json"
+        hide_empty: false
+        use_shell: false
+        encoding: "utf-8"
+      callbacks:
+        on_left: "toggle_label"
+        on_middle: "do_nothing"
+        on_right: "toggle_label"
+  notifications:
+    type: "yasb.notifications.NotificationsWidget"
+    options:
+      label: "<span>{icon}</span> {count}"
+      label_alt: "{count} 条通知"
+      hide_empty: true
+      tooltip: false
+      icons:
+        new: "\uf0f3"
+        default: "\uf1f6"
+      callbacks:
+        on_left: "toggle_notification"
+        on_middle: "toggle_label"
+        on_right: "do_nothing"
+  power_menu:
+    type: "yasb.power_menu.PowerMenuWidget"
+    options:
+      label: "\uf011"
+      uptime: True
+      blur: False
+      blur_background: True
+      animation_duration: 250
+      button_row: 3
+      buttons:
+        signout: ["\udb80\udf43","Sign out"]
+        shutdown: ["\uf011","Shut Down"]
+        restart: ["\uead2","Restart"]
+        sleep: ["\udb82\udd04","Sleep"]
+        lock: ["\uf023","Lock"]
+        cancel: ["\udb81\udf3a","Cancel"]
+  active_window:
+    type: "yasb.active_window.ActiveWindowWidget"
+    options:
+      label: "{win[title]}"
+      label_alt: ""
+      label_no_window: ""
+      label_icon: true
+      label_icon_size: 12
+      max_length: 20
+      max_length_ellipsis: "..."
+      monitor_exclusive: true
+  disk:
+    type: "yasb.disk.DiskWidget"
+    options:
+        label: "<span>\uf473</span>"
+        label_alt: "<span>\uf473</span>"
+        group_label:
+          volume_labels: ["C", "D", "E", "F"]
+          show_label_name: true
+          blur: True
+          round_corners: True
+          round_corners_type: "normal"
+          border_color: "System"
+          alignment: "right"
+          direction: "down"
+        callbacks:
+          on_left: "toggle_group"
+  cpu:
+    type: "yasb.cpu.CpuWidget"
+    options:
+      label: "<span>\uf4bc</span> {info[percent][total]}%"
+      label_alt: "<span>\uf437</span> {info[histograms][cpu_percent]}"
+      update_interval: 2000
+      histogram_icons:
+        - '\u2581' # 0%
+        - '\u2581' # 10%
+        - '\u2582' # 20%
+        - '\u2583' # 30%
+        - '\u2584' # 40%
+        - '\u2585' # 50%
+        - '\u2586' # 60%
+        - '\u2587' # 70%
+        - '\u2588' # 80%+
+      histogram_num_columns: 8
+      callbacks:
+        on_right: "exec cmd /c Taskmgr"
+  memory:
+    type: "yasb.memory.MemoryWidget"
+    options:
+      label: "<span>\uefc5</span> {virtual_mem_percent}%"
+      label_alt: "<span>\uefc5</span> {virtual_mem_used}/{virtual_mem_total}"
+      update_interval: 5000
+      callbacks:
+        on_left: "toggle_label"
+        on_middle: "do_nothing"
+        on_right: "do_nothing"
+  wifi:
+      type: "yasb.wifi.WifiWidget"
+      options:
+        label: "<span>{wifi_icon}</span>"
+        label_alt: "{wifi_name} {wifi_strength}%"
+        ethernet_label: "<span>{wifi_icon}</span>"
+        ethernet_label_alt: "<span>{wifi_icon}</span> {ip_addr}"
+        ethernet_icon: "\udb80\udf17"
+        update_interval: 5000
+        callbacks:
+          on_left: "exec cmd.exe /c start ms-settings:network"
+          on_middle: "do_nothing"
+          on_right: "toggle_label"
+        wifi_icons: [
+          "\udb82\udd2e",  # Icon for 0% strength
+          "\udb82\udd1f",  # Icon for 1-20% strength
+          "\udb82\udd22",  # Icon for 21-40% strength
+          "\udb82\udd25",  # Icon for 41-80% strength
+          "\udb82\udd28"   # Icon for 81-100% strength
+        ]
+  update_check:
+    type: "yasb.custom.CustomWidget"
+    options:
+      label: "<span>\uf0ab</span>{data[count]}"
+      label_alt: "<span>\uf0ab</span>{data[count]}"
+      label_placeholder: ""
+      class_name: "update-check-widget"
+      tooltip: true
+      tooltip_label: "{data[details]}\n\n左键更新 WinGet + Scoop，右键重新检查。"
+      exec_options:
+        run_cmd: "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File C:\\Users\\sheep\\.config\\yasb\\winget-update-check.ps1"
+        run_interval: 10800000
+        return_format: "json"
+        hide_empty: true
+        use_shell: false
+      callbacks:
+        on_left: "exec pwsh.exe -NoProfile -NoExit -ExecutionPolicy Bypass -File C:\\Users\\sheep\\.config\\yasb\\winget-upgrade-all.ps1"
+        on_middle: "do_nothing"
+        on_right: "exec_custom"
+  traffic:
+    type: "yasb.traffic.TrafficWidget"
+    options:
+      label: "<span>\udb82\udcfa</span> \uea9a{download_speed} \ueaa1{upload_speed}"
+      label_alt: "<span>\udb82\udcfa</span> Download {download_speed} | Upload {upload_speed}"
+      update_interval: 1000
+      callbacks:
+        on_left: 'toggle_label'
+        on_right: 'exec cmd /c Taskmgr'
+  cava:
+    type: "yasb.cava.CavaWidget"
+    options:
+      source: "auto"
+      bar_height: 17
+      min_bar_height: 2
+      bars_number: 48
+      bar_spacing: 2
+      bar_width: 2
+      bar_type: "bars"
+      orientation: "bottom"
+      framerate: 60
+      sensitivity: 115
+      noise_reduction: 76
+      monstercat: 1
+      waves: 0
+      sleep_timer: 3
+      hide_empty: false
+      edge_fade: 0
+      gradient: 1
+      foreground: "#40a4aa"
+      gradient_color_1: "#006f75"
+      gradient_color_2: "#20959b"
+      gradient_color_3: "#80c3c6"
+      callbacks:
+        on_left: "do_nothing"
+        on_middle: "do_nothing"
+        on_right: "reload_cava"
+  media:
+    type: "yasb.media.MediaWidget"
+    options:
+      label: "{title}"
+      label_alt: "{artist}{s}{title}"
+      separator: " · "
+      hide_empty: true
+      max_field_size:
+        label: 18
+        label_alt: 28
+        truncate_whole_label: true
+      show_thumbnail: true
+      controls_only: false
+      controls_left: false
+      controls_hide: false
+      thumbnail_alpha: 88
+      thumbnail_padding: 6
+      thumbnail_corner_radius: 7
+      symmetric_corner_radius: true
+      thumbnail_edge_fade: true
+      icons:
+        prev_track: "\U000f04ae"
+        next_track: "\U000f04ad"
+        play: "\U000f040a"
+        pause: "\U000f03e4"
+      progress_bar:
+        enabled: true
+        alignment: "bottom"
+      media_menu:
+        blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "None"
+        alignment: "right"
+        direction: "down"
+        offset_top: 6
+        offset_left: 0
+        thumbnail_corner_radius: 12
+        thumbnail_size: 120
+        max_title_size: 42
+        max_artist_size: 24
+        max_source_size: 16
+        show_source: true
+        show_volume_slider: false
+      media_menu_icons:
+        prev_track: "\U000f04ae"
+        next_track: "\U000f04ad"
+        play: "\U000f040a"
+        pause: "\U000f03e4"
+      scrolling_label:
+        enabled: false
+        update_interval_ms: 33
+        style: "bounce-ease"
+        label_padding: 1
+        always_scroll: false
+      callbacks:
+        on_left: "toggle_media_menu"
+        on_middle: "toggle_play_pause"
+        on_right: "open_media_source"
+  volume:
+    type: "yasb.volume.VolumeWidget"
+    options:
+      label: "<span>{icon}</span> {level}"
+      label_alt: "<span>{icon}</span> {level}"
+      mute_text: "静音"
+      tooltip: true
+      scroll_step: 2
+      slider_beep: false
+      icons:
+        "muted": "\U000f0581"
+        "25": "\U000f057f"
+        "60": "\U000f0580"
+        "100": "\U000f057e"
+      progress_bar:
+        enabled: true
+        progress_type: "circular"
+        position: "left"
+        size: 18
+        thickness: 2
+        color: ["#00868d", "#80c3c6"]
+        background_color: "#1b3538"
+        animation: true
+      audio_menu:
+        blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "None"
+        alignment: "right"
+        direction: "down"
+        offset_top: 6
+        offset_left: 0
+        show_apps: true
+        show_app_labels: true
+        show_app_icons: true
+        show_apps_expanded: false
+        app_icons:
+          toggle_down: "\uf078"
+          toggle_up: "\uf077"
+      callbacks:
+        on_left: "toggle_volume_menu"
+        on_middle: "toggle_mute"
+        on_right: "toggle_mute"
+  systray:
+    type: "yasb.systray.SystrayWidget"
+    options:
+      label_collapsed: ""
+      label_expanded: ""
+      label_position: "left"
+      icon_size: 20
+      pin_click_modifier: "alt"
+      show_unpinned: true
+      show_unpinned_button: true
+      show_in_popup: true
+      icons_per_row: 4
+      show_battery: false
+      show_volume: false
+      show_network: false
+      tooltip: true
+      use_hook: true
+      hide_icons: []
+      popup:
+        blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "None"
+        alignment: "right"
+        direction: "down"
+        offset_top: 6
+        offset_left: 0
+  control_center:
+    type: "yasb.control_center.ControlCenterWidget"
+    options:
+      label: "<span>\U000f062e</span>"
+      tooltip: true
+      sections_order:
+        - "system_controls"
+        - "quick_actions"
+        - "sliders"
+        - "power"
+        - "media"
+      popup:
+        blur: true
+        alignment: "right"
+        direction: "down"
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "None"
+        offset_top: 6
+        offset_left: 0
+      sections:
+        system_controls:
+          show: true
+          profile_image_size: 28
+          power_icon: "\U000f0425"
+          lock_icon: "\U000f033e"
+          settings_icon: "\U000f0493"
+        quick_actions:
+          show: true
+          columns: 3
+          label_position: "default"
+          actions:
+            - { id: "toggle_dnd", label: "勿扰", icon: "\U000f009b" }
+            - { id: "toggle_mute", label: "静音", icon: "\U000f0581" }
+            - { id: "toggle_mic_mute", label: "麦克风", icon: "\U000f036d" }
+            - { id: "screenshot", label: "截图", icon: "\U000f0e51" }
+            - { id: "touch_keyboard", label: "触摸键盘", icon: "\U000f030c" }
+            - { id: "toggle_theme", label: "深色模式", icon: "\U000f050e" }
+        sliders:
+          show: true
+          brightness:
+            show_slider: true
+            icon: "\U000f00df"
+            show_source_selector: true
+            source_selector_icon: "\U000f0140"
+          volume:
+            show_slider: true
+            icon: "\U000f057e"
+            show_source_selector: true
+            source_selector_icon: "\U000f0140"
+          microphone:
+            show_slider: true
+            icon: "\U000f036c"
+            show_source_selector: true
+            source_selector_icon: "\U000f0140"
+        power:
+          show: true
+          power_plan_title: "电源计划"
+          power_mode_title: "电源模式"
+          button_menu_icon: "\U000f0140"
+        media:
+          show: true
+          thumbnail_size: 44
+          thumbnail_radius: 8
+          icons:
+            prev_track: "\U000f04ae"
+            next_track: "\U000f04ad"
+            play: "\U000f040a"
+            pause: "\U000f03e4"
+      callbacks:
+        on_left: "toggle_menu"

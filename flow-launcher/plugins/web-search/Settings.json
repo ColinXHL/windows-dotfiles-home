@@ -1,0 +1,16 @@
+{
+  "SearchSources": [
+    {
+      "Title": "Google",
+      "ActionKeyword": "g",
+      "Icon": "google.png",
+      "CustomIcon": false,
+      "Url": "https://www.google.com/search?q={q}",
+      "IsPrivateMode": false,
+      "Enabled": true
+    }
+  ],
+  "EnableSuggestion": false,
+  "MaxSuggestions": 1,
+  "Suggestion": "Google"
+}

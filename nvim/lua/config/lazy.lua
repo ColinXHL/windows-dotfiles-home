@@ -1,0 +1,74 @@
+local git = vim.fn.exepath("git")
+if git == "" and vim.fn.has("win32") == 1 then
+  local git_fallback = "C:/Program Files/Git/cmd/git.exe"
+  if (vim.uv or vim.loop).fs_stat(git_fallback) then
+    local git_dir = vim.fs.dirname(git_fallback)
+    vim.env.PATH = git_dir .. ";" .. (vim.env.PATH or "")
+    git = git_fallback
+  end
+end
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  if git == "" then
+    vim.api.nvim_echo({
+      { "Failed to bootstrap lazy.nvim: Git is not available.\n", "ErrorMsg" },
+      { "Install Git or add it to PATH, then restart Neovim.", "WarningMsg" },
+    }, true, {})
+    os.exit(1)
+  end
+
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ git, "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    if #vim.api.nvim_list_uis() > 0 then
+      vim.fn.getchar()
+    end
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  spec = {
+    -- add LazyVim and import its plugins
+    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    -- Require only tracked modules so stale file-level links are harmless.
+    require("plugins.theme"),
+    require("plugins.workflow"),
+  },
+  defaults = {
+    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
+    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
+    lazy = false,
+    -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
+    -- have outdated releases, which may break your Neovim install.
+    version = false, -- always use the latest git commit
+    -- version = "*", -- try installing the latest stable version for plugins that support semver
+  },
+  install = { colorscheme = { "catppuccin-mocha", "habamax" } },
+  checker = {
+    enabled = true, -- check for plugin updates periodically
+    notify = false, -- notify on update
+  }, -- automatically check for plugin updates
+  performance = {
+    rtp = {
+      -- disable some rtp plugins
+      disabled_plugins = {
+        "gzip",
+        -- "matchit",
+        -- "matchparen",
+        -- "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+})

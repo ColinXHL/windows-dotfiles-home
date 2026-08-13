@@ -1,0 +1,5 @@
+shell.log
+backup-*/
+*.bak
+Thumbs.db
+.DS_Store

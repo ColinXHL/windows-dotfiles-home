@@ -1,0 +1,12 @@
+# Nushell state and generated files must never enter this repository.
+history*
+*.sqlite
+*.sqlite3
+*.db
+*.db-*
+plugin.msgpackz
+vendor/
+
+# Local backups and diagnostics
+*.bak
+*.log
