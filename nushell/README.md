@@ -5,6 +5,7 @@ Windows-first configuration for Nushell running in WezTerm. Validated with Nushe
 ## Files
 
 - `config.nu`: entrypoint and deterministic module load order
+- `zed.nu`: lightweight Zed terminal entrypoint without Starship or Fastfetch
 - `modules/core.nu`: editor, terminal integration, history, file and table behavior
 - `modules/prompt.nu`: status-aware transient prompt
 - `modules/completions.nu`: fuzzy IDE-style completion menu and Tab behavior
@@ -53,6 +54,7 @@ symbolic links:
 
 ```text
 ~/.config/nushell/config.nu       -> ~/windows-dotfiles/nushell/config.nu
+~/.config/nushell/zed.nu          -> ~/windows-dotfiles/nushell/zed.nu
 ~/.config/nushell/modules/*.nu    -> ~/windows-dotfiles/nushell/modules/*.nu
 ~/.config/nushell/fastfetch.jsonc -> ~/windows-dotfiles/nushell/fastfetch.jsonc
 %APPDATA%\nushell\config.nu       -> ~/windows-dotfiles/nushell/config.nu
@@ -75,6 +77,9 @@ files or links are moved to timestamped `.bak` files before replacement.
 
 - Fastfetch runs only in a top-level shell (`SHLVL == 1`) and skips unsupported desktop probes.
 - Starship keeps the active prompt complete, shows commands taking at least two seconds, collapses completed prompts to a status-colored arrow, and keeps Git repository paths home-relative.
+- Zed starts Nushell with `--no-config-file`, then sources `zed.nu`; this skips
+  Starship's vendor autoload and Fastfetch while retaining completions, aliases,
+  proxy commands, Yazi, and Zoxide.
 - Tab opens the IDE completion menu; arrows select; a second Tab accepts without executing.
 - `rm` uses the Recycle Bin by default. Use `rm --permanent` for permanent deletion.
 - `proxy-on` uses `http://127.0.0.1:7890`; `proxy-off` restores the inherited proxy variables.

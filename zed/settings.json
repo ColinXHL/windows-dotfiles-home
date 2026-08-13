@@ -1,0 +1,161 @@
+// Zed settings aligned with the Neovim, Neovide, WezTerm, and YASB workflow.
+{
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "vim_mode": true,
+  "vim": {
+    "default_mode": "normal",
+    "use_system_clipboard": "always",
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": false,
+    "highlight_on_yank_duration": 200
+  },
+  "base_keymap": "Zed",
+
+  "agent_servers": {
+    "codex-acp": {
+      "type": "registry"
+    }
+  },
+
+  "auto_install_extensions": {
+    "html": true,
+    "xml": true,
+    "doxygen": true,
+    "neocmake": true,
+    "catppuccin": true,
+    "catppuccin-blur": true,
+    "catppuccin-icons": true
+  },
+  "file_types": {
+    "XML": ["xaml"]
+  },
+  "theme": {
+    "mode": "dark",
+    "light": "YASB Teal Glass",
+    "dark": "YASB Teal Glass"
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
+
+  "ui_font_family": ".SystemUIFont",
+  "ui_font_size": 16,
+  "buffer_font_family": "0xProto Nerd Font Mono",
+  "buffer_font_fallbacks": [
+    "JetBrainsMono Nerd Icons",
+    "Maple Mono CN",
+    "Noto Sans SC",
+    "Segoe UI Emoji"
+  ],
+  "buffer_font_size": 16,
+  "buffer_font_weight": 500,
+  "text_rendering_mode": "subpixel",
+  "buffer_line_height": {
+    "custom": 1.35
+  },
+  "vertical_scroll_margin": 8,
+  "relative_line_numbers": "enabled",
+  "soft_wrap": "none",
+  "show_wrap_guides": false,
+  "hide_mouse": "on_typing_and_action",
+
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": false,
+    "activate_on_close": "history",
+    "show_close_button": "hover",
+    "show_diagnostics": "off"
+  },
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false
+  },
+  "title_bar": {
+    "show_branch_status_icon": false,
+    "show_branch_name": false,
+    "show_project_items": true,
+    "show_onboarding_banner": false,
+    "show_user_picture": false,
+    "show_user_menu": true,
+    "show_sign_in": false,
+    "show_menus": false
+  },
+  "scrollbar": {
+    "show": "never"
+  },
+  "minimap": {
+    "show": "never"
+  },
+  "gutter": {
+    "line_numbers": true,
+    "runnables": true,
+    "breakpoints": true,
+    "folds": true,
+    "min_line_number_digits": 2
+  },
+  "project_panel": {
+    "dock": "left",
+    "default_width": 260,
+    "entry_spacing": "standard",
+    "file_icons": true,
+    "folder_icons": true,
+    "git_status": true,
+    "indent_size": 16,
+    "auto_reveal_entries": true,
+    "auto_fold_dirs": true,
+    "bold_folder_labels": false,
+    "starts_open": true
+  },
+  "terminal": {
+    "dock": "bottom",
+    "default_height": 320,
+    "font_family": "0xProto Nerd Font Mono",
+    "font_fallbacks": [
+      "JetBrainsMono Nerd Icons",
+      "Maple Mono CN",
+      "Noto Sans SC",
+      "Segoe UI Emoji"
+    ],
+    "font_size": 12,
+    "line_height": {
+      "custom": 1.2
+    },
+    "minimum_contrast": 0,
+    "cursor_shape": "bar",
+    "blinking": "on",
+    "shell": {
+      "with_arguments": {
+        "program": "nu.exe",
+        "args": [
+          "--no-config-file",
+          "--execute",
+          "source ~/.config/nushell/zed.nu"
+        ]
+      }
+    },
+    "working_directory": "current_project_directory",
+    "toolbar": {
+      "breadcrumbs": false
+    },
+    "scrollbar": {
+      "show": "never"
+    }
+  },
+  "active_pane_modifiers": {
+    "border_size": 1.0,
+    "inactive_opacity": 0.94
+  },
+  "centered_layout": {
+    "left_padding": 0.15,
+    "right_padding": 0.15
+  }
+}

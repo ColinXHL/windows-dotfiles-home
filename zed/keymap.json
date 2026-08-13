@@ -1,0 +1,172 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-s": "workspace::Save",
+      "ctrl-shift-a": "agent::Toggle"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-/": "editor::ToggleComments"
+    }
+  },
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+
+      "[ b": "pane::ActivatePreviousItem",
+      "] b": "pane::ActivateNextItem",
+      "[ d": "editor::GoToPreviousDiagnostic",
+      "] d": "editor::GoToDiagnostic",
+      "[ h": "editor::GoToPreviousHunk",
+      "] h": "editor::GoToHunk",
+
+      "g d": "editor::GoToDefinition",
+      "g shift-d": "editor::GoToDeclaration",
+      "g y": "editor::GoToTypeDefinition",
+      "g shift-i": "editor::GoToImplementation",
+      "g r": "editor::FindAllReferences",
+      "g shift-k": "editor::ShowSignatureHelp",
+      "shift-k": "editor::Hover",
+
+      "space a a": "agent::Toggle",
+      "space e": "project_panel::Toggle",
+      "space f e": "project_panel::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space f g": "text_finder::Toggle",
+      "space f r": [
+        "pane::DeploySearch",
+        {
+          "replace_enabled": true
+        }
+      ],
+      "space f s": "outline::Toggle",
+      "space f shift-s": "project_symbols::Toggle",
+      "space f y": [
+        "task::Spawn",
+        {
+          "task_name": "Yazi",
+          "reveal_target": "center"
+        }
+      ],
+
+      "space b b": "tab_switcher::Toggle",
+      "space b a": "workspace::CloseAllItemsAndPanes",
+      "space b d": "pane::CloseActiveItem",
+      "space b o": "workspace::CloseInactiveTabsAndPanes",
+
+      "space w |": "pane::SplitVertical",
+      "space w -": "pane::SplitHorizontal",
+      "space w d": "pane::CloseActiveItem",
+
+      "space c a": "editor::ToggleCodeActions",
+      "space c f": "editor::Format",
+      "space c h": "editor::SwitchSourceHeader",
+      "space c m": "lsp_tool::ToggleMenu",
+      "space c p": "markdown::OpenPreviewToTheSide",
+      "space c r": "editor::Rename",
+
+      "space g g": [
+        "task::Spawn",
+        {
+          "task_name": "Lazygit",
+          "reveal_target": "center"
+        }
+      ],
+      "space g h p": "editor::ToggleSelectedDiffHunks",
+
+      "space j j": "vim::HelixJumpToWord",
+      "space j l": "go_to_line::Toggle",
+      "space j t": "editor::SelectLargerSyntaxNode",
+
+      "space p b": "diagnostics::DeployCurrentFile",
+      "space p d": "editor::Hover",
+      "space p p": "diagnostics::Deploy",
+
+      "space q q": "zed::Quit",
+      "space q s": "projects::OpenRecent",
+
+      "space r l": "terminal_panel::ToggleFocus",
+      "space r r": "task::Spawn",
+      "space r s": "task::Spawn",
+
+      "space t f": "workspace::NewCenterTerminal",
+      "space t t": "terminal_panel::ToggleFocus",
+
+      "space u h": "editor::ToggleInlayHints",
+      "space ?": "zed::OpenKeymap"
+    }
+  },
+  {
+    "context": "vim_mode == visual && !menu",
+    "bindings": {
+      "space c a": "editor::ToggleCodeActions",
+      "space c f": "editor::FormatSelections",
+      "space j j": "vim::HelixJumpToWord",
+      "space j l": "go_to_line::Toggle",
+      "space j t": "editor::SelectLargerSyntaxNode"
+    }
+  },
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      "ctrl-up": "vim::ResizePaneUp",
+      "ctrl-down": "vim::ResizePaneDown",
+      "ctrl-left": "vim::ResizePaneLeft",
+      "ctrl-right": "vim::ResizePaneRight",
+      "ctrl-w =": "vim::ResetPaneSizes"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "space a a": "agent::Toggle",
+      "space e": "project_panel::Toggle",
+      "space f e": "project_panel::Toggle",
+      "l": "project_panel::OpenPermanent"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-q": "terminal::ToggleViMode"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w l": "workspace::ActivatePaneRight"
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      "space a a": "agent::Toggle",
+      "space e": "project_panel::Toggle",
+      "space f e": "project_panel::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space f g": "text_finder::Toggle",
+      "space f shift-s": "project_symbols::Toggle",
+      "space r r": "task::Spawn",
+      "space t f": "workspace::NewCenterTerminal",
+      "space t t": "terminal_panel::ToggleFocus"
+    }
+  }
+]
