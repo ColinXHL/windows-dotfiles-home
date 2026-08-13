@@ -277,6 +277,7 @@ $shortcut.Description = "Start Codex and apply the active Dream Skin theme"
 $shortcut.Save()
 Write-Host "Configured on-demand launcher: $codexDreamSkinShortcut"
 
+$runProperties = Get-ItemProperty -LiteralPath $runKey
 foreach ($legacyStartupName in @(
     "AutoHotkey Hotkeys",
     "GlazeWM",
@@ -285,7 +286,7 @@ foreach ($legacyStartupName in @(
     "Tacky Borders",
     "tacky-borders"
 )) {
-    if ($null -ne (Get-ItemPropertyValue -LiteralPath $runKey -Name $legacyStartupName -ErrorAction SilentlyContinue)) {
+    if ($runProperties.PSObject.Properties.Name -contains $legacyStartupName) {
         Remove-ItemProperty -LiteralPath $runKey -Name $legacyStartupName
         Write-Host "Removed superseded startup entry: $legacyStartupName"
     }
