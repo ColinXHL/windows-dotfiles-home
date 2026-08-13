@@ -12,6 +12,7 @@ one repository.
 | `powershell/` | PowerShell 7 profile and interactive shell helpers |
 | `nvim/` | Neovim and LazyVim configuration |
 | `neovide/` | Neovide font and renderer configuration |
+| `zed/` | Zed appearance, Vim key bindings, and global tasks |
 | `codex-dream-skin/` | Local Dream Skin theme source and reproducible ZIP build |
 | `startup/` | Ordered Windows logon startup |
 | `tmux/` | Minimal remote tmux configuration with true color and OSC 52 |
@@ -26,7 +27,7 @@ one repository.
 The WezTerm, Nushell, Nilesoft Shell, Neovim, Yazi, and `glzr` histories were
 imported from their original repositories with Git subtree. Additional
 application-specific documentation is available in `wezterm/`, `nushell/`,
-`nvim/`, `yasb/`, and `nilesoft-shell/`.
+`nvim/`, `zed/`, `yasb/`, and `nilesoft-shell/`.
 
 ## Windows Install
 
@@ -48,14 +49,20 @@ proxy commands for `127.0.0.1:7890`; the proxy is not enabled at shell startup.
 The YASB configuration contains user-profile paths. Replace them in
 `yasb/config.yaml` before installing under another Windows account.
 
-The installer creates these symbolic links:
+The installer creates symbolic links, with same-volume hard links as a file
+fallback when Windows symbolic-link privileges are unavailable:
 
 ```text
 ~/.config/wezterm/wezterm.lua     -> <repo>/wezterm/wezterm.lua
 ~/.config/wezterm/modules/*.lua   -> <repo>/wezterm/modules/*.lua
 ~/.config/wezterm/assets/**       -> <repo>/wezterm/assets/**
 %APPDATA%/neovide/config.toml     -> <repo>/neovide/config.toml
+%APPDATA%/Zed/settings.json       -> <repo>/zed/settings.json
+%APPDATA%/Zed/keymap.json         -> <repo>/zed/keymap.json
+%APPDATA%/Zed/tasks.json          -> <repo>/zed/tasks.json
+%APPDATA%/Zed/themes/*.json       -> <repo>/zed/themes/*.json
 ~/.config/nushell/config.nu       -> <repo>/nushell/config.nu
+~/.config/nushell/zed.nu          -> <repo>/nushell/zed.nu
 ~/.config/nushell/modules/*.nu    -> <repo>/nushell/modules/*.nu
 ~/.config/nushell/fastfetch.jsonc -> <repo>/nushell/fastfetch.jsonc
 ~/.config/starship.toml           -> <repo>/nushell/starship.toml

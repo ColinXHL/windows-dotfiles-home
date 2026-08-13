@@ -40,6 +40,17 @@ function Set-ConfigLink {
             return
         }
 
+        if ($item.LinkType -eq "HardLink") {
+            $fullTarget = [IO.Path]::GetFullPath($Target)
+            $targetRoot = [IO.Path]::GetPathRoot($fullTarget)
+            $volumeRelativeTarget = $fullTarget.Substring($targetRoot.Length - 1)
+            $hardLinks = @(& fsutil hardlink list $Path 2>$null)
+            if ($hardLinks -contains $volumeRelativeTarget) {
+                Write-Host "Already hard-linked: $Path"
+                return
+            }
+        }
+
         $backup = "$Path.pre-dotfiles-$stamp.bak"
         Move-Item -LiteralPath $Path -Destination $backup
         Write-Host "Backed up: $Path -> $backup"
@@ -49,6 +60,16 @@ function Set-ConfigLink {
         New-Item -ItemType SymbolicLink -Path $Path -Target $Target | Out-Null
         Write-Host "Linked: $Path -> $Target"
     } catch {
+        if (Test-Path -LiteralPath $Target -PathType Leaf) {
+            try {
+                New-Item -ItemType HardLink -Path $Path -Target $Target | Out-Null
+                Write-Host "Hard-linked: $Path -> $Target"
+                return
+            } catch {
+                # Restore the original below if neither link type is available.
+            }
+        }
+
         if ($null -ne $item -and (Test-Path -LiteralPath $backup) -and -not (Test-Path -LiteralPath $Path)) {
             Move-Item -LiteralPath $backup -Destination $Path
         }
@@ -143,12 +164,31 @@ Set-ConfigLink `
     -Path (Join-Path $env:APPDATA "neovide\config.toml") `
     -Target (Join-Path $repoRoot "neovide\config.toml")
 
+$zedConfig = Join-Path $env:APPDATA "Zed"
+$zedSource = Join-Path $repoRoot "zed"
+
+foreach ($zedFile in @("settings.json", "keymap.json", "tasks.json")) {
+    Set-ConfigLink `
+        -Path (Join-Path $zedConfig $zedFile) `
+        -Target (Join-Path $zedSource $zedFile)
+}
+
+Set-ConfigTree `
+    -Source (Join-Path $zedSource "themes") `
+    -Destination (Join-Path $zedConfig "themes")
+
+& (Join-Path $zedSource "Patch-CSharpDocHighlight.ps1")
+
 $nushellConfig = Join-Path $HOME ".config\nushell"
 $nushellSource = Join-Path $repoRoot "nushell"
 
 Set-ConfigLink `
     -Path (Join-Path $nushellConfig "config.nu") `
     -Target (Join-Path $nushellSource "config.nu")
+
+Set-ConfigLink `
+    -Path (Join-Path $nushellConfig "zed.nu") `
+    -Target (Join-Path $nushellSource "zed.nu")
 
 Set-ConfigLink `
     -Path (Join-Path $nushellConfig "fastfetch.jsonc") `
