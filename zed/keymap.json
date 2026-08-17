@@ -3,13 +3,35 @@
     "context": "Workspace",
     "bindings": {
       "ctrl-s": "workspace::Save",
-      "ctrl-shift-a": "agent::Toggle"
+      "ctrl-shift-a": "agent::Toggle",
+      "ctrl-shift-r": "task::Spawn"
     }
   },
   {
     "context": "Editor",
     "bindings": {
       "ctrl-/": "editor::ToggleComments"
+    }
+  },
+  {
+    "context": "!Terminal",
+    "bindings": {
+      "ctrl-shift-c": null
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore",
+      "ctrl-s": ["workspace::SendKeystrokes", "escape ctrl-s"]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && extension == rs",
+    "bindings": {
+      "(": ["workspace::SendKeystrokes", "( ) left"],
+      "[": ["workspace::SendKeystrokes", "[ ] left"],
+      "{": ["workspace::SendKeystrokes", "{ } left"]
     }
   },
   {
@@ -37,14 +59,24 @@
 
       "space a a": "agent::Toggle",
       "space e": "project_panel::Toggle",
-      "space f e": "project_panel::Toggle",
+      "space f e": "workspace::ToggleLeftDock",
       "space f f": "file_finder::Toggle",
       "space f g": "text_finder::Toggle",
+      "space f w": "vim::SearchUnderCursor",
+      "space f shift-w": [
+        "workspace::SendKeystrokes",
+        "v i w space f g"
+      ],
       "space f r": [
         "pane::DeploySearch",
         {
           "replace_enabled": true
         }
+      ],
+      "space f p": "markdown::OpenPreview",
+      "space f shift-p": [
+        "workspace::SendKeystrokes",
+        "ctrl-k v ctrl-l"
       ],
       "space f s": "outline::Toggle",
       "space f shift-s": "project_symbols::Toggle",
@@ -69,7 +101,6 @@
       "space c f": "editor::Format",
       "space c h": "editor::SwitchSourceHeader",
       "space c m": "lsp_tool::ToggleMenu",
-      "space c p": "markdown::OpenPreviewToTheSide",
       "space c r": "editor::Rename",
 
       "space g g": [
@@ -100,12 +131,31 @@
       "space t t": "terminal_panel::ToggleFocus",
 
       "space u h": "editor::ToggleInlayHints",
-      "space ?": "zed::OpenKeymap"
+      "space u w": "editor::ToggleSoftWrap",
+      "space y r": "workspace::CopyRelativePath",
+      "space y p": "workspace::CopyPath",
+      "space y l": "editor::CopyFileLocation",
+      "space ?": [
+        "task::Spawn",
+        {
+          "task_name": "Zed / Vim 速查表",
+          "reveal_target": "center"
+        }
+      ]
     }
   },
   {
     "context": "vim_mode == visual && !menu",
     "bindings": {
+      "shift-s": "vim::PushAddSurrounds",
+      "\"": ["workspace::SendKeystrokes", "shift-s \""],
+      "'": ["workspace::SendKeystrokes", "shift-s '"],
+      "`": ["workspace::SendKeystrokes", "shift-s `"],
+      "(": ["workspace::SendKeystrokes", "shift-s ("],
+      "[": ["workspace::SendKeystrokes", "shift-s ["],
+      "{": ["workspace::SendKeystrokes", "shift-s {"],
+      "<": ["workspace::SendKeystrokes", "shift-s <"],
+      "space f g": "text_finder::Toggle",
       "space c a": "editor::ToggleCodeActions",
       "space c f": "editor::FormatSelections",
       "space j j": "vim::HelixJumpToWord",
@@ -140,6 +190,58 @@
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-q": "terminal::ToggleViMode"
+    }
+  },
+  {
+    "context": "Terminal && vi_mode",
+    "bindings": {
+      "space a a": "agent::Toggle",
+      "space e": "project_panel::Toggle",
+      "space f e": "workspace::ToggleLeftDock",
+      "space f f": "file_finder::Toggle",
+      "space f g": "text_finder::Toggle",
+      "space f r": [
+        "pane::DeploySearch",
+        {
+          "replace_enabled": true
+        }
+      ],
+      "space f shift-s": "project_symbols::Toggle",
+      "space b b": "tab_switcher::Toggle",
+      "space b a": "workspace::CloseAllItemsAndPanes",
+      "space w d": "pane::CloseActiveItem",
+      "space b d": "pane::CloseActiveItem",
+      "space b o": "workspace::CloseInactiveTabsAndPanes",
+      "space w |": "pane::SplitVertical",
+      "space w -": "pane::SplitHorizontal",
+      "space g g": [
+        "task::Spawn",
+        {
+          "task_name": "Lazygit",
+          "reveal_target": "center"
+        }
+      ],
+      "space p p": "diagnostics::Deploy",
+      "space q q": "zed::Quit",
+      "space q s": "projects::OpenRecent",
+      "space r r": "task::Spawn",
+      "space r s": "task::Spawn",
+      "space t f": "workspace::NewCenterTerminal",
+      "space t t": "terminal_panel::ToggleFocus",
+      "space ?": [
+        "task::Spawn",
+        {
+          "task_name": "Zed / Vim 速查表",
+          "reveal_target": "center"
+        }
+      ]
+    }
+  },
+  {
+    "context": "MarkdownPreview",
+    "bindings": {
+      "space f p": "markdown::CloseAndReturnToEditor",
+      "space f shift-p": "markdown::CloseAndReturnToEditor"
     }
   },
   {

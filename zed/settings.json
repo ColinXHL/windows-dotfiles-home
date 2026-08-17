@@ -14,6 +14,14 @@
   },
   "base_keymap": "Zed",
 
+  "languages": {
+    "Rust": {
+      "use_autoclose": true,
+      "use_auto_surround": true,
+      "always_treat_brackets_as_autoclosed": true
+    }
+  },
+
   "agent_servers": {
     "codex-acp": {
       "type": "registry"

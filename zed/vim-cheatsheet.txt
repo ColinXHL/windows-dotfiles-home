@@ -1,0 +1,145 @@
+[自定义·总览]  Space ?             打开这张可搜索的 Zed / Vim 速查表；输入关键词过滤，Esc 关闭
+[自定义·通用]  Ctrl-s              保存当前文件
+[自定义·通用]  Ctrl-Shift-a        打开 / 关闭 Agent 面板
+[自定义·通用]  Ctrl-/              注释 / 取消注释当前行或选区
+[自定义·模式]  j k                 Insert 模式依次按 j、k，回到 Normal（光标留在插入点之前）
+[自定义·面板]  Space e             打开项目文件树；若已打开则聚焦，再按一次关闭
+[自定义·面板]  Space f e           从编辑区直接打开 / 关闭整个左侧 Dock（file explorer）
+[自定义·查找]  Space f f           按文件名查找并打开文件（file finder）
+[自定义·查找]  Space f g           全局文本搜索；Visual 下自动带入选中的内容
+[自定义·查找]  Space f w           当前文件查光标下完整单词；用 n / N 跳转
+[自定义·查找]  Space f W           全局查光标下完整单词；打开悬浮搜索框并自动填词
+[自定义·查找]  Space f r           全局搜索并展开替换栏（search / replace）
+[自定义·查找]  Space f p           当前 Pane 打开 Markdown 预览；预览中再按一次返回编辑器（默认 Ctrl-Shift-v）
+[自定义·查找]  Space f P           打开并聚焦侧边 Markdown 预览；预览中再按一次关闭（默认 Ctrl-k v）
+[自定义·查找]  Space f s           当前文件符号 / 大纲（outline）
+[自定义·查找]  Space f S           全项目符号（project symbols）
+[自定义·文件]  Space f y           在中央区域打开 Yazi 文件管理器
+[自定义·Buffer]  Space b b         最近 Buffer / Tab 切换器
+[自定义·Buffer]  Space b d         关闭当前 Buffer / Tab
+[自定义·Buffer]  Space b o         只保留当前 Buffer，关闭其他 Tab 和 Pane
+[自定义·Buffer]  Space b a         关闭全部 Buffer 和 Pane
+[自定义·Buffer]  [ b / ] b         上一个 / 下一个 Buffer
+[自定义·窗口]  Ctrl-h/j/k/l        聚焦左 / 下 / 上 / 右 Pane；Terminal 与 Dock 中也可用
+[自定义·窗口]  Space w |           垂直分屏（左右）
+[自定义·窗口]  Space w -           水平分屏（上下）
+[自定义·窗口]  Space w d           关闭当前 Pane 中的活动项
+[自定义·窗口]  Ctrl-方向键         向对应方向调整 Pane 大小
+[自定义·窗口]  Ctrl-w =            平均重置所有 Pane 尺寸
+[自定义·代码]  Space c a           Code Action / Quick Fix
+[自定义·代码]  Space c f           格式化文件；Visual 下格式化选区
+[自定义·代码]  Space c r           重命名符号
+[自定义·代码]  Space c m           打开 LSP 工具菜单
+[自定义·代码]  Space c h           C / C++ 源文件与头文件切换
+[自定义·跳转]  g d / g D           跳到定义 / 声明
+[自定义·跳转]  g y / g I           跳到类型定义 / 实现
+[自定义·跳转]  g r                 查找所有引用
+[自定义·跳转]  g K / K             参数签名帮助 / Hover 文档
+[自定义·跳转]  [ d / ] d           上一个 / 下一个诊断错误
+[自定义·跳转]  [ h / ] h           上一个 / 下一个 Git hunk
+[自定义·跳转]  Space j j           EasyMotion 风格跳到屏幕上的单词
+[自定义·跳转]  Space j l           跳到指定行
+[自定义·语法]  Space j t           扩大语法节点选区
+[自定义·问题]  Space p b           当前文件诊断列表
+[自定义·问题]  Space p p           全项目诊断列表
+[自定义·问题]  Space p d           显示光标处诊断 / Hover
+[自定义·Git]  Space g g            在中央区域打开 Lazygit
+[自定义·Git]  Space g h p          显示 / 隐藏选中位置的 Git diff hunk
+[自定义·终端]  Space t f           新建中央 Terminal
+[自定义·终端]  Space t t           聚焦 / 隐藏底部 Terminal
+[自定义·终端]  Space r l           聚焦 / 隐藏底部 Terminal
+[自定义·终端]  Ctrl-q              进入 / 退出 Terminal Vi Normal；进入后可用常用 Workspace / Buffer / Pane Leader
+[自定义·终端]  Ctrl-Shift-c        Terminal 中复制；编辑区不再打开 Collab Panel
+[自定义·任务]  Space r r / r s     打开 Zed Task 选择器
+[自定义·任务]  Ctrl-Shift-r        始终打开悬浮 Task 选择器，不受最近运行任务影响
+[自定义·显示]  Space u h           开关 Inlay Hints（类型、参数提示）
+[自定义·显示]  Space u w           开关 Soft Wrap（自动换行）
+[自定义·复制]  Space y r           复制相对项目根目录的文件路径
+[自定义·复制]  Space y p           复制文件绝对路径
+[自定义·复制]  Space y l           复制文件位置（路径 + 行列）
+[自定义·项目]  Space q s           打开最近项目
+[自定义·退出]  Space q q           退出 Zed
+[自定义·Visual]  S                 Surround：选区后按 S，再输入包围符
+[自定义·Visual]  " ' ` ( [ { <     选区后直接按包围符，立即给选区加对应引号 / 括号 / 尖括号
+[自定义·Rust]  ( [ {               Rust Insert 中输入左括号，自动补齐右括号并把光标放在中间
+[Vim·模式]     i / a               在光标前 / 后进入 Insert
+[Vim·模式]     I / A               在行首非空白处 / 行尾进入 Insert
+[Vim·模式]     o / O               在下方 / 上方新建一行并进入 Insert
+[Vim·模式]     v / V / Ctrl-v      字符 Visual / 行 Visual / 块 Visual
+[Vim·模式]     Esc                 回到 Normal；也可使用自定义 j k
+[Vim·移动]     h j k l             左、下、上、右移动
+[Vim·移动]     w / b / e / ge      下个词首 / 上个词首 / 词尾 / 上个词尾
+[Vim·移动]     W / B / E / gE      同上，但只按空白划分 WORD
+[Vim·移动]     0 / ^ / $           物理行首 / 首个非空白字符 / 行尾
+[Vim·移动]     gg / G              文件开头 / 文件末尾；{数字}G 跳到指定行
+[Vim·移动]     H / M / L           跳到屏幕顶部 / 中部 / 底部
+[Vim·移动]     %                   在匹配括号之间跳转
+[Vim·查找]     f{c} / F{c}         本行向后 / 向前跳到字符 c
+[Vim·查找]     t{c} / T{c}         本行向后 / 向前跳到字符 c 之前
+[Vim·查找]     ; / ,               重复 / 反向重复上一次 f、F、t、T
+[Vim·查找]     /文本 / ?文本       向后 / 向前搜索文本
+[Vim·查找]     n / N               下一个 / 上一个搜索结果
+[Vim·查找]     * / #               向后 / 向前搜索光标下完整单词
+[Vim·查找]     g* / g#             向后 / 向前搜索光标下词片段
+[Vim·编辑]     d{motion}            删除；如 dw、d$、dG
+[Vim·编辑]     c{motion}            修改并进入 Insert；如 cw、ci"、c}
+[Vim·编辑]     y{motion}            复制；如 yw、yi{、yG
+[Vim·编辑]     dd / cc / yy         删除整行 / 修改整行 / 复制整行
+[Vim·编辑]     x / X               删除光标下 / 光标前字符
+[Vim·编辑]     r{c} / R             替换一个字符 / 进入连续 Replace 模式
+[Vim·编辑]     p / P               在光标后 / 前粘贴
+[Vim·编辑]     u / Ctrl-r           撤销 / 重做
+[Vim·编辑]     .                   重复上一次修改
+[Vim·编辑]     J / gJ              合并下一行（加空格 / 不加空格）
+[Vim·缩进]     >> / <<             当前行增加 / 减少缩进
+[Vim·缩进]     =                   配合 motion 自动缩进；== 缩进当前行
+[Vim·文本对象]  iw / aw             当前单词内部 / 包含周围空白的整个单词
+[Vim·文本对象]  i" / a"             双引号内部 / 包含双引号
+[Vim·文本对象]  i' / a'             单引号内部 / 包含单引号
+[Vim·文本对象]  i` / a`             反引号内部 / 包含反引号
+[Vim·文本对象]  i( / a(             小括号内部 / 包含小括号；ib / ab 等价
+[Vim·文本对象]  i[ / a[             方括号内部 / 包含方括号
+[Vim·文本对象]  i{ / a{             大括号内部 / 包含大括号；iB / aB 等价
+[Vim·文本对象]  i< / a<             尖括号内部 / 包含尖括号
+[Vim·文本对象]  ip / ap             段落内部 / 整个段落
+[Vim·Surround]  ys{motion}{符号}    给 motion 范围加包围符；ysiw" 给单词加双引号
+[Vim·Surround]  yss{符号}           给当前整行加包围符
+[Vim·Surround]  cs{旧}{新}          修改包围符；cs"' 把双引号改为单引号
+[Vim·Surround]  ds{符号}            删除包围符；ds" 删除外层双引号
+[Vim·寄存器]   "{r}y / "{r}p       使用命名寄存器 r 复制 / 粘贴，例如 "ayy、"ap
+[Vim·寄存器]   "+y / "+p           与系统剪贴板交互
+[Vim·寄存器]   "_d                 删除到黑洞寄存器，不覆盖当前复制内容
+[Vim·跳转]     Ctrl-o / Ctrl-i      跳转列表中后退 / 前进
+[Vim·跳转]     m{a-z}               设置局部标记；如 ma
+[Vim·跳转]     '{mark} / `{mark}    跳到标记所在行 / 精确位置；如 'a、`a
+[Vim·跳转]     g; / g,              跳到更旧 / 更新的修改位置
+[Vim·宏]       q{r} ... q           录制宏到寄存器 r；再次按 q 停止
+[Vim·宏]       @{r} / @@            执行寄存器 r 中的宏 / 重复上次宏
+[Vim·大小写]   gu{motion}           转小写；如 guiw
+[Vim·大小写]   gU{motion}           转大写；如 gUiw
+[Vim·大小写]   g~{motion}           切换大小写
+[Vim·注释]     gcc / gc{motion}     注释当前行 / motion 范围
+[Vim·z滚动]    zt / zz / zb         让当前行位于窗口顶部 / 中间 / 底部
+[Vim·z滚动]    z Enter / z. / z-    同上并把光标移到行首非空白字符
+[Vim·z滚动]    z^ / z+              上一屏底部 / 下一屏顶部附近，并移到行首
+[Vim·z横滚]    zh / zl              向左 / 向右滚动一列
+[Vim·z横滚]    zH / zL              向左 / 向右滚动半屏
+[Vim·z折叠]    za / zA              切换当前折叠 / 递归切换折叠
+[Vim·z折叠]    zc / zC              关闭当前折叠 / 递归关闭折叠
+[Vim·z折叠]    zo / zO              打开当前折叠 / 递归打开折叠
+[Vim·z折叠]    zf{motion}           折叠指定范围
+[Vim·z折叠]    zM / zR              折叠全部 / 展开全部
+[Vim·屏幕]     Ctrl-d / Ctrl-u      向下 / 向上滚动半屏
+[Vim·屏幕]     Ctrl-f / Ctrl-b      向下 / 向上滚动整屏
+[Vim·窗口]     Ctrl-w h/j/k/l       聚焦左 / 下 / 上 / 右窗口
+[Vim·窗口]     Ctrl-w v / Ctrl-w s  垂直 / 水平分屏
+[Vim·窗口]     Ctrl-w c             关闭当前窗口
+[Vim·Tab]      gt / gT              下一个 / 上一个 Tab
+[Vim·Zed g]    gh                  Hover 文档
+[Vim·Zed g]    grn / grr / gri      重命名 / 查找引用 / 跳到实现
+[Vim·Zed g]    gra                 Code Action
+[Vim·Zed g]    gx / gf             打开 URL / 光标处文件名
+[Vim·Zed g]    gs / gO             打开当前文件 Outline
+[Vim·Zed g]    gS                  打开全项目 Symbols
+[Vim·Zed g]    g] / g[             下一个 / 上一个诊断
+[Vim·退出]     ZZ / ZQ              保存后关闭当前项 / 不保存直接关闭当前项

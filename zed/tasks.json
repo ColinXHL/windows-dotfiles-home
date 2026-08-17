@@ -14,5 +14,15 @@
     "cwd": "$ZED_WORKTREE_ROOT",
     "use_new_terminal": true,
     "allow_concurrent_runs": false
+  },
+  {
+    "label": "Zed / Vim 速查表",
+    "command": "python -c \"import os,pathlib,subprocess,sys; p=(pathlib.Path(r'C:\\Users\\sheep\\windows-dotfiles-home\\zed\\vim-cheatsheet.txt') if os.name=='nt' else pathlib.Path('/mnt/c/Users/sheep/windows-dotfiles-home/zed/vim-cheatsheet.txt')); src=p.open('r',encoding='utf-8'); r=subprocess.run(['fzf','--layout=reverse','--border=rounded','--prompt=Zed/Vim > ','--header=输入中文、英文或键位过滤  ·  Enter 保持窗口  ·  Esc 关闭','--bind=enter:ignore','--info=inline','--cycle','--no-multi'],stdin=src); src.close(); sys.exit(0 if r.returncode in (0,130) else r.returncode)\"",
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "reveal_target": "center",
+    "hide": "on_success",
+    "show_summary": true,
+    "show_command": false
   }
 ]
